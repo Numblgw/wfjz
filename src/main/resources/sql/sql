@@ -1,0 +1,7 @@
+create table user(
+  `id` int auto_increment primary key comment '自增主键',
+  `username` varchar(32) not null comment '用户名',
+  `password` varchar(32) not null comment '密码',
+  key index_user_id(id),
+  key index_username(username)
+)engine InnoDB default charset =UTF8 comment '用户表';
