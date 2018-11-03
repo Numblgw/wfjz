@@ -97,10 +97,15 @@
                     //通过模板字符串拼接url，在jsp中使用模板字符串需要用反斜杠转义
                     let url = `${pageContext.request.contextPath}/static/dom/\${hash}.html`;
                     window.spaUtil.getPage(url,insertPoint);
+                    //需要数据列表的hash值都已 List 结尾
+                    if(hash.indexOf('List') != -1){
+                        //*****************##########待重构#############################################################
+                    }
                 }
             },false);
         }
 
+        //程序入口，初始化页面
         function init(){
             //进入时默认显示使用说明
             window.spaUtil.getPage('${pageContext.request.contextPath}/static/dom/description.html',document.querySelectorAll('.admin-body')[0]);
@@ -130,9 +135,8 @@
 
         window.addEventListener('load',init,false);
 
-        layui.use(['element','table'], function(){
-            var element = layui.element
-                ,table = layui.table;
+        layui.use('element', function(){
+            var element = layui.element;
         });
     </script>
 </body>

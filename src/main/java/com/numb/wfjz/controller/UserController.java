@@ -29,15 +29,6 @@ public class UserController {
     }
 
     /**
-     * 跳转至管理页面
-     * @return  管理页面逻辑名
-     */
-    @GetMapping("/adminView")
-    public String toAdminView(){
-        return "admin";
-    }
-
-    /**
      * 接收登录提交的数据
      * @return  主页面逻辑名
      */

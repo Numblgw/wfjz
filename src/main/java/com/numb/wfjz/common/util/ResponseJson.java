@@ -17,7 +17,7 @@ public class ResponseJson<T> {
     }
 
     private ResponseJson(T data){
-        this.code = 200;
+        this.code = 0;
         this.msg = "success";
         this.data = data;
     }
