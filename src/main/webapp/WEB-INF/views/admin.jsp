@@ -11,6 +11,8 @@
     <title>后台管理</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/layui/css/layui.css"/>
+    <script src="${pageContext.request.contextPath}/static/layui/layui.js"></script>
+    <script src="${pageContext.request.contextPath}/static/js/spaUtil.js"></script>
 </head>
 <body>
     <div class="layui-layout layui-layout-admin">
@@ -37,7 +39,7 @@
                         <a href="javascript:;">用户管理</a>
                         <dl class="layui-nav-child">
                             <dd><a href="#userList">用户列表</a></dd>
-                            <dd><a href="#addUser">添加用户</a></dd>
+                                <dd><a class="dd_addUser" href="#addUser">添加用户</a></dd>
                             <dd><a href="#searchUser">搜索用户</a></dd>
                         </dl>
                     </li>
@@ -80,64 +82,42 @@
             <!-- 底部固定区域 -->
             <div class="layui-row">
                 <div class="layui-col-md2 layui-col-md-offset5" style="text-align: center;">www.wfjz.com</div>
-                <div class="layui-col-md2 layui-col-md-offset3" style="text-align: center;">Author : Numblgw</div>
             </div>
         </div>
     </div>
-    <script src="${pageContext.request.contextPath}/static/layui/layui.js"></script>
-    <script src="${pageContext.request.contextPath}/static/js/spaUtil.js"></script>
-    <script>
-        //通过监听二级导航产生的hash值变化，显示相应的管理视图
-        function showAdminView(){
-            window.addEventListener('hashchange',()=>{
-                let hash = window.location.hash.replace('#','');
-                let insertPoint = document.querySelectorAll('.admin-body')[0];
-                //由于一级导航与二级导航都会产生hash变化，为区分两个hash变化的不同，一级导航的hash值均为xxxNav
-                if(hash.indexOf('Nav') == -1){
-                    //通过模板字符串拼接url，在jsp中使用模板字符串需要用反斜杠转义
-                    let url = `${pageContext.request.contextPath}/static/dom/\${hash}.html`;
-                    window.spaUtil.getPage(url,insertPoint);
-                    //需要数据列表的hash值都已 List 结尾
-                    if(hash.indexOf('List') != -1){
-                        //*****************##########待重构#############################################################
-                    }
-                }
-            },false);
-        }
-
-        //程序入口，初始化页面
-        function init(){
-            //进入时默认显示使用说明
-            window.spaUtil.getPage('${pageContext.request.contextPath}/static/dom/description.html',document.querySelectorAll('.admin-body')[0]);
-
-            //把左边导航栏全部设置为隐藏，因为layui中默认为全部显示
-            document.querySelectorAll('.nav-li-left').forEach((li)=>{
-                li.style.display = 'none';
-            });
-
-            //监听点击一级导航产生的hash变化，在左侧显示相应的二级导航，"使用说明（description）"归为二级导航
-            window.addEventListener('hashchange',()=>{
-                let hash = window.location.hash.replace('#','');
-                //由于一级导航与二级导航都会产生hash变化，为区分两个hash变化的不同，一级导航的hash值均为xxxNav
-                if(hash.indexOf('Nav') != -1){
-                    let showLiClassName = `nav-li-left-\${hash}`;
-                    document.querySelectorAll('.nav-li-left').forEach((li)=>{
-                        if(li.className.indexOf(showLiClassName) != -1){
-                            li.style.display = 'block';
-                        } else {
-                            li.style.display = 'none';
-                        }
-                    });
-                }
-            },false);
-            showAdminView();
-        }
-
-        window.addEventListener('load',init,false);
-
-        layui.use('element', function(){
-            var element = layui.element;
-        });
-    </script>
 </body>
+<script>
+    //进入时默认显示使用说明
+    window.spaUtil.getPage('${pageContext.request.contextPath}/static/dom/description.html',null,document.querySelectorAll('.admin-body')[0]);
+    //把左边导航栏全部设置为隐藏，因为layui中默认为全部显示
+    document.querySelectorAll('.nav-li-left').forEach((li)=>{
+        li.style.display = 'none';
+    });
+    //监听点击导航栏发生的hash变化，若点击一级导航则显示相应的二级导航，若点击二级导航则加载相应的dom
+    window.addEventListener('hashchange',()=>{
+        let hash = window.location.hash.replace('#','');
+        //为区分两个导航的hash，一级导航的hash值均为xxxNav
+        if(hash.indexOf('Nav') != -1){
+            let showLiClassName = `nav-li-left-\${hash}`;
+            document.querySelectorAll('.nav-li-left').forEach((li)=>{
+                if(li.className.indexOf(showLiClassName) != -1){
+                    li.style.display = 'block';
+                } else {
+                    li.style.display = 'none';
+                }
+            });
+        } else {
+            //通过模板字符串拼接url，在jsp中使用模板字符串需要用反斜杠转义
+            let domUrl = `${pageContext.request.contextPath}/static/dom/\${hash}.html`;
+            //js文件的路径
+            let jsUrl = `${pageContext.request.contextPath}/static/js/\${hash}.js`;
+            //加载dom到主页面中，dom中的动态数据由dom的html文件中的脚本自动请求并渲染。
+            window.spaUtil.getPage(domUrl,jsUrl,document.querySelectorAll('.admin-body')[0]);
+        }
+    },false);
+
+    layui.use('element', function(){
+        var element = layui.element;
+    });
+</script>
 </html>

@@ -3,6 +3,7 @@ package com.numb.wfjz.pojo;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * 数据库中user表的pojo类
@@ -18,4 +19,8 @@ public class User implements Serializable {
     private String username;
     //密码
     private String password;
+    //创建该条记录的时间
+    private Date gmt_create;
+    //最后一次修改该记录的时间
+    private Date gmt_modified;
 }

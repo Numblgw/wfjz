@@ -12,4 +12,23 @@
         <!-- 驼峰命名自动转换 -->
         <setting name="mapUnderscoreToCamelCase" value="true"/>
     </settings>
+
+    <!--
+        plugins在配置文件中的位置必须符合要求，否则会报错，顺序如下:
+        properties?, settings?,
+        typeAliases?, typeHandlers?,
+        objectFactory?,objectWrapperFactory?,
+        plugins?,
+        environments?, databaseIdProvider?, mappers?
+    -->
+    <plugins>
+        <!-- com.github.pagehelper为PageHelper类所在包名 -->
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+            <!-- 可以自动检测,只有用sqlServer数据库时必须配置
+                <property name="helperDialect" value="mysql"/>
+            -->
+            <!-- 配置分页合理化参数，当页数小于0查询第一页，页数大于总页数查询最后一页 -->
+            <property name="reasonable" value="true"/>
+        </plugin>
+    </plugins>
 </configuration>

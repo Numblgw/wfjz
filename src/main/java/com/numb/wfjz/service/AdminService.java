@@ -1,13 +1,11 @@
 package com.numb.wfjz.service;
 
-import com.numb.wfjz.pojo.User;
-
-import java.util.List;
+import com.github.pagehelper.PageInfo;
 
 public interface AdminService {
     /**
-     * 获取用户列表
-     * @return  User对象的list集合
+     * 获取用户列表,并且使用分页插件分页
+     * @return  PageInfo对象
      */
-    List<User> getUserList();
+    PageInfo getUserListByPage(int pageNum , int pageSize);
 }

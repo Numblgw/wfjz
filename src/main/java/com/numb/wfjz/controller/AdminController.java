@@ -5,10 +5,7 @@ import com.numb.wfjz.pojo.User;
 import com.numb.wfjz.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/admin")
@@ -32,8 +29,7 @@ public class AdminController {
      */
     @ResponseBody
     @PostMapping("/userList")
-    public ResponseJson<User> getUserList(){
-        System.out.println("111111*************************************************************");
-        return ResponseJson.success(adminService.getUserList());
+    public ResponseJson<User> getUserList(@RequestParam Integer page,@RequestParam Integer limit){
+        return ResponseJson.success(adminService.getUserListByPage(page,limit));
     }
 }
