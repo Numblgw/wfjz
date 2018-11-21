@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/layui/css/layui.css"/>
     <script src="${pageContext.request.contextPath}/static/layui/layui.js"></script>
     <script src="${pageContext.request.contextPath}/static/js/spaUtil.js"></script>
+    <script src="${pageContext.request.contextPath}/static/js/ajaxUtil.js"></script>
+    <script src="${pageContext.request.contextPath}/static/js/stringUtil.js"></script>
 </head>
 <body>
     <div class="layui-layout layui-layout-admin">
@@ -39,7 +41,8 @@
                         <a href="javascript:;">用户管理</a>
                         <dl class="layui-nav-child">
                             <dd><a href="#userList">用户列表</a></dd>
-                                <dd><a class="dd_addUser" href="#addUser">添加用户</a></dd>
+                            <dd><a class="dd_addUser" href="#addUser">添加用户</a></dd>
+                            <dd><a class="dd_updateUser" href="#updateUser">修改用户</a></dd>
                             <dd><a href="#searchUser">搜索用户</a></dd>
                         </dl>
                     </li>

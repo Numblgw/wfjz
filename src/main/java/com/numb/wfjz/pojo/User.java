@@ -20,7 +20,7 @@ public class User implements Serializable {
     //密码
     private String password;
     //创建该条记录的时间
-    private Date gmt_create;
+    private Date gmtCreate;
     //最后一次修改该记录的时间
-    private Date gmt_modified;
+    private Date gmtModified;
 }

@@ -54,6 +54,16 @@
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
             <version>${spring.version}</version>
         </dependency>
@@ -69,7 +79,7 @@
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-jdbc</artifactId>
+            <artifactId>spring-aspects</artifactId>
             <version>${spring.version}</version>
         </dependency>
         <dependency>
@@ -78,9 +88,9 @@
             <version>${spring.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-orm</artifactId>
-            <version>${spring.version}</version>
+            <groupId>org.aopalliance</groupId>
+            <artifactId>com.springsource.org.aopalliance</artifactId>
+            <version>1.0.0</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
@@ -108,7 +118,7 @@
         </dependency>
         <!-- json end -->
 
-        <!-- mybatis -->
+        <!-- mybatis start -->
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis-spring</artifactId>
@@ -119,6 +129,7 @@
             <artifactId>mybatis</artifactId>
             <version>3.4.6</version>
         </dependency>
+        <!-- mybatis end -->
 
         <!-- servlet、jsp start -->
         <dependency>

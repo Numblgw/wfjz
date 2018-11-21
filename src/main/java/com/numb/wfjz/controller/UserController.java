@@ -1,7 +1,9 @@
 package com.numb.wfjz.controller;
 
+import com.numb.wfjz.common.util.ResponseJson;
 import com.numb.wfjz.pojo.User;
 import com.numb.wfjz.service.UserService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -29,13 +31,13 @@ public class UserController {
     }
 
     /**
-     * 接收登录提交的数据
-     * @return  主页面逻辑名
+     * 用户注册与后台添加用户通用，验证用户名是否已存在
+     * @param username  用户名
+     * @return  Response<Boolean>存在则 data 为 true，不存在则 data 为 false
      */
     @ResponseBody
-    @PostMapping("/login")
-    public User login(@RequestBody User user){
-
-        return user;
+    @GetMapping("/usernameRepeat")
+    public ResponseJson<Boolean> checkUserRepeat(@Param("username") String username){
+        return ResponseJson.success(userService.checkUsernameRepeat(username));
     }
 }

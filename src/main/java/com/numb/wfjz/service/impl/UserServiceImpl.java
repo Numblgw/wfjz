@@ -21,4 +21,9 @@ public class UserServiceImpl implements UserService {
     public boolean insertOne(User user) {
         return userMapper.insertOne(user) == 1;
     }
+
+    @Override
+    public boolean checkUsernameRepeat(String username) {
+        return userMapper.countByUsername(username) == 1;
+    }
 }

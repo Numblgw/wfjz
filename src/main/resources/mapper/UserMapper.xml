@@ -7,11 +7,17 @@
     <select id="findById" parameterType="int" resultType="user">
         select u.id id , u.username username , u.password password
         from user u
-        where id = #{id};
+        where id = #{id}
     </select>
 
     <insert id="insertOne" parameterType="user">
         insert into `user`(username, password)
-        values (#{username},#{password});
+        values (#{username},#{password})
     </insert>
+
+    <select id="countByUsername" parameterType="String" resultType="int">
+        select count(*)
+        from wfjz_user
+        where username = #{username}
+    </select>
 </mapper>

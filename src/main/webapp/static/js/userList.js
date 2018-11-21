@@ -1,10 +1,12 @@
+//后台管理界面——用户管理——用户列表的js脚本
+
 layui.use(['table','element','layer','laypage'], function(){
     let table = layui.table;
 
     table.render({
         elem: '#userList'
         ,url: '/admin/userList' //数据接口
-        ,method:'post'
+        ,method:'get'
         ,toolbar:'default'
         ,page:true
         ,limits:[5,10,15]

@@ -17,4 +17,11 @@ public interface UserService {
      * @return      是否插入成功
      */
     boolean insertOne(User user);
+
+    /**
+     * 查询用户名是否已存在
+     * @param username  用户名
+     * @return  存在true 不存在false
+     */
+    boolean checkUsernameRepeat(String username);
 }

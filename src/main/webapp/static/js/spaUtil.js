@@ -35,6 +35,11 @@ var spaUtil = (function () {
         }, insertPoint);
     }
 
+    function setData(items,data){
+        items.forEach((item)=>{
+            console.log(item.className.replace('',''));
+        })
+    }
 
-    return {getPage: getPage}
+    return {getPage : getPage , setData : setData}
 })();

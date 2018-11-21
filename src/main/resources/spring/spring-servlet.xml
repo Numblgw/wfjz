@@ -25,7 +25,13 @@
     <!-- 注解扫描
         扫描spring注解扫描中排除的3个注解
      -->
-    <context:component-scan base-package="com.numb.wfjz">
+    <!--
+        ###### 调了8个小时的bug ######
+        由于spring mvc扫描了所有的包，造成了事务不回滚，下面详解：
+        造成SpringMVC事务不回滚的情况大多是因为springMVC子容器加载了未添加事务处理的Service。
+        也就是，一个spring容器，一个spring mvc子容器，在spring容器里配置的事务没生效，因为spring mvc加载了没有配置事务的Service。
+     -->
+    <context:component-scan base-package="com.numb.wfjz.controller">
         <context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
         <context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.RestController"/>

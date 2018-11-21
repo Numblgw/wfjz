@@ -1,5 +1,6 @@
 package com.numb.wfjz.common.util;
 
+import com.numb.wfjz.common.enums.ResponseEnum;
 import lombok.Data;
 
 @Data
@@ -36,5 +37,12 @@ public class ResponseJson<T> {
      */
     public static ResponseJson success(Object data){
         return new ResponseJson<>(data);
+    }
+
+    public static ResponseJson fail(ResponseEnum responseEnum){
+        ResponseJson responseJson = new ResponseJson();
+        responseJson.setCode(responseEnum.getCode());
+        responseJson.setMsg(responseEnum.getMsg());
+        return responseJson;
     }
 }

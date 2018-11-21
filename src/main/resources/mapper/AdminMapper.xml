@@ -5,9 +5,116 @@
 
 <mapper namespace="com.numb.wfjz.mapper.AdminMapper">
     <select id="selectUserDetailList" resultType="userDetail">
-        select u.id id , u.username username ,
+        select u.id id , u.username username , u_d.nickname nickname , u_d.sex sex , u_d.email email , u_d.phone phone , u_d.address address
+        from wfjz_user u left outer join wfjz_user_detail u_d on u.id = u_d.user_id
+    </select>
+
+    <insert id="insertUser" parameterType="userDetail" useGeneratedKeys="true" keyProperty="id">
+        insert into wfjz_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="username != null and username != ''">
+                username,
+            </if>
+            <if test="password != null and password != ''">
+                password,
+            </if>
+            <if test="gmtCreate != null">
+                gmt_create,
+            </if>
+        </trim>
+        <trim prefix="values(" suffix=")" suffixOverrides=",">
+            <if test="username != null and username != ''">
+                #{username},
+            </if>
+            <if test="password != null and password != ''">
+                #{password},
+            </if>
+            <if test="gmtCreate != null">
+                #{gmtCreate},
+            </if>
+        </trim>
+    </insert>
+
+    <insert id="insertUserDetail" parameterType="userDetail">
+        insert into wfjz_user_detail
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and id != 0">
+                user_id,
+            </if>
+            <if test="nickname != null and nickname != ''">
+                nickname,
+            </if>
+            <if test="sex != null and sex != ''">
+                sex,
+            </if>
+            <if test="email != null and email != ''">
+                email,
+            </if>
+            <if test="phone != null and phone != ''">
+                phone,
+            </if>
+            <if test="address != null and address != ''">
+                address,
+            </if>
+            <if test="gmtCreate != null">
+                gmt_create,
+            </if>
+        </trim>
+        <trim prefix="values(" suffix=")" suffixOverrides=",">
+            <if test="id != null and id != 0">
+                #{id},
+            </if>
+            <if test="nickname != null and nickname != ''">
+                #{nickname},
+            </if>
+            <if test="sex != null and sex != ''">
+                #{sex},
+            </if>
+            <if test="email != null and email != ''">
+                #{email},
+            </if>
+            <if test="phone != null and phone != ''">
+                #{phone},
+            </if>
+            <if test="address != null and address != ''">
+                #{address},
+            </if>
+            <if test="gmtCreate != null">
+                #{gmtCreate},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="selectUserByUsername" parameterType="string" resultType="int">
+        select id from wfjz_user where username = #{username}
+    </select>
+
+    <update id="updateUserDetail" parameterType="userDetail">
+        update wfjz_user_detail
+        <trim prefix="set " suffix=" " suffixOverrides=",">
+            <if test="nickname != null and nickname != ''">
+                nickname = #{nickname},
+            </if>
+            <if test="sex != null and sex != ''">
+                sex = #{sex},
+            </if>
+            <if test="email != null and email != ''">
+                email = #{email},
+            </if>
+            <if test="phone != null and phone != ''">
+                phone = #{phone},
+            </if>
+            <if test="address != null and address != ''">
+                address = #{address},
+            </if>
+        </trim>
+        where user_id = #{id}
+    </update>
+
+    <select id="selectUserDetailById" parameterType="int" resultType="userDetail">
+        select u.id id , u.username username , u.password password , u.gmt_create gmt_create , u.gmt_modified gmt_modified ,
         u_d.nickname nickname , u_d.sex sex , u_d.email email , u_d.phone phone , u_d.address address
-        from wfjz_user u,wfjz_user_detail u_d
-        where u.id = u_d.user_id
+        from wfjz_user u left outer join wfjz_user_detail u_d on u.id = u_d.user_id
+        where u.id = #{id}
     </select>
 </mapper>

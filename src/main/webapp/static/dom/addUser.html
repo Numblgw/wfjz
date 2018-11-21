@@ -1,25 +1,32 @@
 <style>
-    .div-blank{
+    .addUser-div-blank{
         height: 30px;
         width: 100%;
     }
-    .div-form-item{
+    .addUser-div-form-item{
         text-align: center;
         line-height: 50px;
         font-size: 18px;
     }
-    .div-label , .div-input , .div-prompt{
+    .addUser-div-label , .addUser-div-input , .addUser-div-prompt{
         height: 50px;
     }
-    .div-input input{
+    .addUser-div-prompt{
+        text-align: left;
+    }
+    .addUser-div-input input{
         height:30px;
         margin-top: 10px;
         width: 100%;
     }
+    .addUser-i-sex:hover ,  #sex-female:hover , #sex-male:hover{
+        cursor:pointer;
+    }
+
 </style>
 <div class="layui-row">
     <div class="layui-col-md6 layui-col-md-offset3">
-        <form action="" method="post">
+        <form class="addUser-form">
             <!--标题    添加用户信息的表单-->
             <div class="layui-row">
                 <div class="layui-col-md4 layui-col-md-offset4">
@@ -27,108 +34,122 @@
                 </div>
             </div>
             <!--空白站位行-->
-            <div class="layui-row div-blank"></div>
+            <div class="layui-row addUser-div-blank"></div>
             <!--用户名-->
-            <div class="layui-row div-form-item">
-                <div class="layui-col-md3 layui-col-md-offset1 div-label">
+            <div class="layui-row addUser-div-form-item">
+                <div class="layui-col-md3 layui-col-md-offset1 addUser-div-label">
                     <label for="username"><i class="layui-icon layui-icon-rate-solid" style="font-size:15px ; color: #FF5722;"></i>用户名</label>
                 </div>
-                <div class="layui-col-md4 div-input">
-                    <input id="username" name="username" type="text" placeholder="请输入用户名" />
+                <div class="layui-col-md4 addUser-div-input">
+                    <input id="username" class="addUser-input" name="username" type="text" placeholder="请输入用户名" />
                 </div>
-                <div class="layui-col-md4 div-prompt">
-                    asdfasfdvsa
+                <div class="layui-col-md4 addUser-div-prompt">
+                    <!--提示信息-->
                 </div>
             </div>
             <!--空白站位行-->
-            <div class="layui-row div-blank"></div>
+            <div class="layui-row addUser-div-blank"></div>
             <!--密码-->
-            <div class="layui-row div-form-item">
-                <div class="layui-col-md3 layui-col-md-offset1 div-label">
+            <div class="layui-row addUser-div-form-item">
+                <div class="layui-col-md3 layui-col-md-offset1 addUser-div-label">
                     <label for="password"><i class="layui-icon layui-icon-rate-solid" style="font-size:15px ; color: #FF5722;"></i>密码</label>
                 </div>
-                <div class="layui-col-md4 div-input">
-                    <input id="password" name="password" type="password" placeholder="请输入密码" />
+                <div class="layui-col-md4 addUser-div-input">
+                    <input id="password" class="addUser-input" name="password" type="password" placeholder="请输入密码" />
                 </div>
-                <div class="layui-col-md4 div-prompt">
-                    fasfdsafdsveqfhyjtn
+                <div class="layui-col-md4 addUser-div-prompt">
+                    <!--提示信息-->
                 </div>
             </div>
             <!--空白站位行-->
-            <div class="layui-row div-blank"></div>
+            <div class="layui-row addUser-div-blank"></div>
             <!--确认密码-->
-            <div class="layui-row div-form-item">
-                <div class="layui-col-md3 layui-col-md-offset1 div-label">
+            <div class="layui-row addUser-div-form-item">
+                <div class="layui-col-md3 layui-col-md-offset1 addUser-div-label">
                     <label for="re-password"><i class="layui-icon layui-icon-rate-solid" style="font-size:15px ; color: #FF5722;"></i>确认密码</label>
                 </div>
-                <div class="layui-col-md4 div-input">
-                    <input id="re-password" type="password" placeholder="请重复输入密码" />
+                <div class="layui-col-md4 addUser-div-input">
+                    <input id="re-password" class="addUser-input" type="password" placeholder="请重复输入密码" />
                 </div>
-                <div class="layui-col-md4 div-prompt">
-                    sdfhjynsdgsc
+                <div class="layui-col-md4 addUser-div-prompt">
+                    <!--提示信息-->
                 </div>
             </div>
             <!--空白站位行-->
-            <div class="layui-row div-blank"></div>
+            <div class="layui-row addUser-div-blank"></div>
             <!--用户昵称-->
-            <div class="layui-row div-form-item">
-                <div class="layui-col-md3 layui-col-md-offset1 div-label">
+            <div class="layui-row addUser-div-form-item">
+                <div class="layui-col-md3 layui-col-md-offset1 addUser-div-label">
                     <label for="nickname">昵称</label>
                 </div>
-                <div class="layui-col-md4 div-input">
-                    <input id="nickname" type="text" placeholder="请输入昵称" />
+                <div class="layui-col-md4 addUser-div-input">
+                    <input id="nickname" class="addUser-input" type="text" placeholder="请输入昵称" />
+                </div>
+                <div class="layui-col-md4 addUser-div-prompt">
+                    <!--提示信息-->
                 </div>
             </div>
             <!--空白站位行-->
-            <div class="layui-row div-blank"></div>
+            <div class="layui-row addUser-div-blank"></div>
             <!--性别-->
-            <div class="layui-row div-form-item">
-                <div class="layui-col-md3 layui-col-md-offset1 div-label">
+            <div class="layui-row addUser-div-form-item">
+                <div class="layui-col-md3 layui-col-md-offset1 addUser-div-label">
                     <label>性别</label>
                 </div>
                 <div class="layui-col-md1">
                     <input id="sex-male" name="sex" type="radio" value="1" checked />
-                    <label for="sex-male"><i class="layui-icon layui-icon-male" style="color: #01AAED; font-size: 25px;"></i></label>
+                    <label for="sex-male"><i class="layui-icon layui-icon-male addUser-i-sex" style="color: #01AAED; font-size: 25px;"></i></label>
                 </div>
                 <div class="layui-col-md1">
                     <input id="sex-female" name="sex" type="radio" value="0" />
-                    <label for="sex-female"><i class="layui-icon layui-icon-female " style="color: deeppink;font-size: 25px;"></i></label>
+                    <label for="sex-female"><i class="layui-icon layui-icon-female addUser-i-sex" style="color: deeppink;font-size: 25px;"></i></label>
                 </div>
             </div>
             <!--空白站位行-->
-            <div class="layui-row div-blank"></div>
+            <div class="layui-row addUser-div-blank"></div>
             <!--邮箱-->
-            <div class="layui-row div-form-item">
-                <div class="layui-col-md3 layui-col-md-offset1 div-label">
+            <div class="layui-row addUser-div-form-item">
+                <div class="layui-col-md3 layui-col-md-offset1 addUser-div-label">
                     <label for="email">邮箱</label>
                 </div>
-                <div class="layui-col-md4 div-input">
-                    <input id="email" type="text" placeholder="请输入邮箱" />
+                <div class="layui-col-md4 addUser-div-input">
+                    <input id="email" class="addUser-input" type="text" placeholder="请输入邮箱" />
                 </div>
-                <div class="layui-col-md4 div-prompt">
-                    asdfasfdvsa
+                <div class="layui-col-md4 addUser-div-prompt">
+                    <!--提示信息-->
                 </div>
             </div>
             <!--空白站位行-->
-            <div class="layui-row div-blank"></div>
+            <div class="layui-row addUser-div-blank"></div>
             <!--电话-->
-            <div class="layui-row div-form-item">
-                <div class="layui-col-md3 layui-col-md-offset1 div-label">
+            <div class="layui-row addUser-div-form-item">
+                <div class="layui-col-md3 layui-col-md-offset1 addUser-div-label">
                     <label for="phone">电话</label>
                 </div>
-                <div class="layui-col-md4 div-input">
-                    <input id="phone" type="text" placeholder="请输入电话" />
+                <div class="layui-col-md4 addUser-div-input">
+                    <input id="phone" class="addUser-input" type="text" placeholder="请输入电话" />
                 </div>
-                <div class="layui-col-md4 div-prompt">
-                    asdfasfdvsa
+                <div class="layui-col-md4 addUser-div-prompt">
+                    <!--提示信息-->
                 </div>
             </div>
             <!--空白站位行-->
-            <div class="layui-row div-blank"></div>
+            <div class="layui-row addUser-div-blank"></div>
+            <!--提示信息-->
+            <div class="layui-row addUser-prompt">
+                <div class="layui-col-md6 layui-col-md-offset2">
+                    <i class="layui-icon layui-icon-tips" style="color: #FFB800;"></i>
+                    注意：带有
+                    <i class="layui-icon layui-icon-rate-solid" style="font-size:15px ; color: #FF5722;"></i>
+                    标识的为必填信息，其余为选填信息。选填信息可以为空，若要填写则需遵守相应的规范。
+                </div>
+            </div>
+            <!--空白站位行-->
+            <div class="layui-row addUser-div-blank"></div>
             <!--提交按钮-->
-            <div class="layui-row div-form-item">
-                <div class="layui-col-md4 layui-col-md-offset4">
-                    <button class="layui-btn layui-btn-lg">提&nbsp;&nbsp;交</button>
+            <div class="layui-row addUser-div-form-item">
+                <div class="layui-col-md4 layui-col-md-offset3">
+                    <button type="button" class="addUser-button-submit" style="width: 200px;height: 30px;line-height: 30px; background-color: #009688;">提&nbsp;&nbsp;交</button>
                 </div>
             </div>
         </form>

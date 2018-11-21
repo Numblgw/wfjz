@@ -8,8 +8,11 @@ import com.numb.wfjz.pojo.UserDetail;
 import com.numb.wfjz.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -24,5 +27,49 @@ public class AdminServiceImpl implements AdminService {
         List<UserDetail> list = adminMapper.selectUserDetailList();
         //使用PageInfo对象进行封装并返回
         return new PageInfo(list);
+    }
+
+    @Override
+    @Transactional
+    public boolean addUserDetail(UserDetail userDetail) {
+        try {
+            userDetail.setGmtCreate(new Date());
+            if (adminMapper.insertUser(userDetail) == 1) {
+                return adminMapper.insertUserDetail(userDetail) == 1;
+            }
+        } catch(Exception e){
+            //打印日志（日志模块暂时没有。。。。233333）
+            throw new RuntimeException();
+        } finally {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean updateUserDetail(UserDetail userDetail) {
+        //如果只有id没有用户名，则直接通过id修改
+        if(userDetail.getId() != null && userDetail.getUsername() == null){
+            return adminMapper.updateUserDetail(userDetail) == 1;
+        }
+        //只有用户名或者id和用户名都有的时，需要先查询表中用户名对应的id
+        int id = adminMapper.selectUserByUsername(userDetail.getUsername());
+        if(null == userDetail.getId() || Objects.equals(id,userDetail.getId())){
+            userDetail.setId(id);
+            return adminMapper.updateUserDetail(userDetail) == 1;
+        }
+        return false;
+    }
+
+    @Override
+    public UserDetail getUserInfo(User user) {
+        if(user.getId() != null){
+            //有id则直接通过id查询
+            return adminMapper.selectUserDetailById(user.getId());
+        }
+        if(user.getId() == null && user.getUsername() != null){
+            //如果没有id则先查出id在通过id进行查询
+            return adminMapper.selectUserDetailById(adminMapper.selectUserByUsername(user.getUsername()));
+        }
+        return null;
     }
 }
