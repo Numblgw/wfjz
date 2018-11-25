@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface AdminMapper {
     /**
-     * 查询用户详情信息列表
+     * 查询用户详情信息列表，不包括已删除用户
      * @return  UserDetail集合m
      */
     List<UserDetail> selectUserDetailList();
@@ -45,4 +45,18 @@ public interface AdminMapper {
      * @return  更新的行数
      */
     int updateUserDetail(UserDetail userDetail);
+
+    /**
+     * 通过id列表逻辑删除wfjz_user表中的数据
+     * @param idList    id列表
+     * @return  删除的行数
+     */
+    int deleteUserByIdList(List<Integer> idList);
+
+    /**
+     * 通过id列表逻辑删除wfjz_user_detail表中的数据
+     * @param idList    id列表
+     * @return  删除的行数
+     */
+    int deleteUserDetailByIdList(List<Integer> idList);
 }

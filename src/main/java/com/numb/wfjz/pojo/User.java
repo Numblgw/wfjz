@@ -19,6 +19,8 @@ public class User implements Serializable {
     private String username;
     //密码
     private String password;
+    //是否删除
+    private Boolean deleted;
     //创建该条记录的时间
     private Date gmtCreate;
     //最后一次修改该记录的时间

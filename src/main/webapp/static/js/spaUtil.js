@@ -36,9 +36,15 @@ var spaUtil = (function () {
     }
 
     function setData(items,data){
+        let keys = Object.keys(data);
         items.forEach((item)=>{
-            console.log(item.className.replace('',''));
-        })
+            keys.forEach((key)=>{
+                let name = item.className.split('-');
+                if(name[name.length-1] == key){
+                    item.innerHTML = data[key];
+                }
+            });
+        });
     }
 
     return {getPage : getPage , setData : setData}

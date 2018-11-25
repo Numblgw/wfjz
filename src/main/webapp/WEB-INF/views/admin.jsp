@@ -42,7 +42,7 @@
                         <dl class="layui-nav-child">
                             <dd><a href="#userList">用户列表</a></dd>
                             <dd><a class="dd_addUser" href="#addUser">添加用户</a></dd>
-                            <dd><a class="dd_updateUser" href="#updateUser">修改用户</a></dd>
+                            <dd><a class="dd_updateUser" href="#updateUser">修改用户</a><span class="layui-hide update-user-id"></span></dd>
                             <dd><a href="#searchUser">搜索用户</a></dd>
                         </dl>
                     </li>

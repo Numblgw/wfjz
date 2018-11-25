@@ -47,14 +47,29 @@ layui.use(['table','element','layer','laypage'], function(){
                 } else if(data.length > 1){
                     alert('只能同时编辑一个');
                 } else {
-                    alert('编辑 [id]：'+ checkStatus.data[0].id);
+                    document.querySelectorAll('.update-user-id')[0].innerHTML = checkStatus.data[0].id;
+                    document.querySelectorAll('.dd_updateUser')[0].click();
                 }
                 break;
             case 'delete':
                 if(data.length === 0){
                     alert('请选择一行');
                 } else {
-                    alert('删除');
+                    if(confirm('确定要删除吗')){
+                        let ids = new Array();
+                        checkStatus.data.forEach((obj)=>{
+                            ids.push(obj.id);
+                        });
+                        window.ajaxUtil.ajaxRequest('delete','/admin/deleteUser',(xhr)=>{
+                            let jsonData = JSON.parse(xhr.responseText);
+                            if(jsonData.code == 200){
+                                alert('删除成功');
+                                window.location.reload();
+                            } else{
+                                alert(jsonData.msg);
+                            }
+                        },ids)
+                    }
                 }
                 break;
         };

@@ -21,7 +21,7 @@
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <init-param>
             <param-name>contextConfigLocation</param-name>
-            <param-value>classpath:spring/spring-servlet.xml</param-value>
+            <param-value>WEB-INF/spring-servlet.xml</param-value>
         </init-param>
         <!-- spring容器启动时就加载并初始化这个servlet，数值1代表优先级最高 -->
         <load-on-startup>1</load-on-startup>
@@ -33,6 +33,17 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
     <!-- spring mvc end-->
+
+    <!-- shiro filter start -->
+    <filter>
+        <filter-name>shiroFilter</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>shiroFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <!-- shiro filter end -->
 
     <welcome-file-list>
         <welcome-file>index.html</welcome-file>

@@ -4,6 +4,8 @@ import com.github.pagehelper.PageInfo;
 import com.numb.wfjz.pojo.User;
 import com.numb.wfjz.pojo.UserDetail;
 
+import java.util.List;
+
 public interface AdminService {
     /**
      * 获取用户列表,并且使用分页插件分页
@@ -31,4 +33,11 @@ public interface AdminService {
      * @return  用户详细信息pojo类
      */
     UserDetail getUserInfo(User user);
+
+    /**
+     * 通过id列表批量删除用户
+     * @param idList    id列表
+     * @return  是否删除成功
+     */
+    boolean deleteUserByIdList(List<Integer> idList);
 }

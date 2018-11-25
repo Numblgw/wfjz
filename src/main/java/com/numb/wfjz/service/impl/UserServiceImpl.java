@@ -13,16 +13,6 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     @Override
-    public User findUserById(int id){
-        return userMapper.findById(id);
-    }
-
-    @Override
-    public boolean insertOne(User user) {
-        return userMapper.insertOne(user) == 1;
-    }
-
-    @Override
     public boolean checkUsernameRepeat(String username) {
         return userMapper.countByUsername(username) == 1;
     }

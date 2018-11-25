@@ -11,6 +11,8 @@ public enum ResponseEnum {
 
     //插入数据失败
     INSERT_ERROR(501,"插入数据失败！"),
+    //删除数据失败
+    DELETE_ERROR(502,"删除数据失败！"),
     //修改数据失败
     UPDATE_ERROR(503,"修改数据失败！"),
     //查询数据失败

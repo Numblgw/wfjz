@@ -32,21 +32,23 @@ public class AdminServiceImpl implements AdminService {
     @Override
     @Transactional
     public boolean addUserDetail(UserDetail userDetail) {
+        boolean flag = false;
         try {
             userDetail.setGmtCreate(new Date());
-            if (adminMapper.insertUser(userDetail) == 1) {
-                return adminMapper.insertUserDetail(userDetail) == 1;
+            if (adminMapper.insertUser(userDetail) == 1 && adminMapper.insertUserDetail(userDetail) == 1) {
+                flag = true;
             }
         } catch(Exception e){
-            //打印日志（日志模块暂时没有。。。。233333）
+            //打印日志
             throw new RuntimeException();
         } finally {
-            return false;
+            return flag;
         }
     }
 
     @Override
     public boolean updateUserDetail(UserDetail userDetail) {
+        userDetail.setGmtModified(new Date());
         //如果只有id没有用户名，则直接通过id修改
         if(userDetail.getId() != null && userDetail.getUsername() == null){
             return adminMapper.updateUserDetail(userDetail) == 1;
@@ -71,5 +73,21 @@ public class AdminServiceImpl implements AdminService {
             return adminMapper.selectUserDetailById(adminMapper.selectUserByUsername(user.getUsername()));
         }
         return null;
+    }
+
+    @Override
+    @Transactional
+    public boolean deleteUserByIdList(List<Integer> idList) {
+        boolean flag = false;
+        try{
+            if(adminMapper.deleteUserByIdList(idList) != 0 && adminMapper.deleteUserDetailByIdList(idList) != 0) {
+                flag = true;
+            }
+        } catch (Exception e){
+            //打印日志
+            throw new RuntimeException();
+        } finally {
+            return flag;
+        }
     }
 }

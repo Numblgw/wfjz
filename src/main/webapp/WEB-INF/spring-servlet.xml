@@ -17,7 +17,7 @@
                 <constructor-arg value="UTF-8"/>
             </bean>
             <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
-                <property name="prettyPrint" value="false"/>
+                <property name="prettyPrint" value="false"></property>
             </bean>
         </mvc:message-converters>
     </mvc:annotation-driven>

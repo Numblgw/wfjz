@@ -7,6 +7,7 @@
     <select id="selectUserDetailList" resultType="userDetail">
         select u.id id , u.username username , u_d.nickname nickname , u_d.sex sex , u_d.email email , u_d.phone phone , u_d.address address
         from wfjz_user u left outer join wfjz_user_detail u_d on u.id = u_d.user_id
+        where u.is_deleted = false
     </select>
 
     <insert id="insertUser" parameterType="userDetail" useGeneratedKeys="true" keyProperty="id">
@@ -107,6 +108,9 @@
             <if test="address != null and address != ''">
                 address = #{address},
             </if>
+            <if test="gmtModified != null">
+                gmt_modified = #{gmtModified}
+            </if>
         </trim>
         where user_id = #{id}
     </update>
@@ -115,6 +119,24 @@
         select u.id id , u.username username , u.password password , u.gmt_create gmt_create , u.gmt_modified gmt_modified ,
         u_d.nickname nickname , u_d.sex sex , u_d.email email , u_d.phone phone , u_d.address address
         from wfjz_user u left outer join wfjz_user_detail u_d on u.id = u_d.user_id
-        where u.id = #{id}
+        where u.id = #{id} and u.is_deleted = false
     </select>
+
+    <update id="deleteUserByIdList" parameterType="java.util.List">
+        update wfjz_user
+        set is_deleted = true
+        where id in
+        <foreach collection="list" item="item" separator="," open="(" close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <update id="deleteUserDetailByIdList" parameterType="java.util.List">
+        update wfjz_user_detail
+        set is_deleted = true
+        where user_id in
+        <foreach collection="list" item="item" separator="," open="(" close=")">
+            #{item}
+        </foreach>
+    </update>
 </mapper>

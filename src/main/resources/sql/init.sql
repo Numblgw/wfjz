@@ -6,6 +6,7 @@ create table wfjz_user(
   `id` int(10)  primary key auto_increment comment '自增主键',
   `username` varchar(32) unique  comment '用户名，唯一',
   `password` varchar(32) not null comment '加密后密码',
+  `is_deleted` tinyint(1) not null default false comment '是否删除,1为删除，0为未删除',
   `gmt_create` datetime not null comment '创建该记录的时间',
   `gmt_modified` datetime comment '最后一次修改该数据的时间',
   key pk_id(id),
@@ -43,6 +44,7 @@ comment = '用户角色关联表，记录用户具有的角色';
 create table wfjz_user_detail(
   `id` int(10) primary key auto_increment comment '自增主键',
   `user_id` int(10) unique comment 'wfjz_user表中的用户id，未设置外键',
+  `is_deleted` tinyint(1) not null default false comment '是否删除,1为删除，0为未删除',
   `nickname` varchar(32) default '还没有名字啊...' comment '昵称',
   `sex` char(1) not null default '1' comment '性别，0为女，1为男，默认男',
   `email` varchar(32) comment '邮箱',
