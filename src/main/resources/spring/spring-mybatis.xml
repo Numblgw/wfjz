@@ -36,7 +36,7 @@
     <!-- sqlSessionFactory配置 -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-        <property name="ConfigLocation" value="classpath:mybatis/sqlMapConfig.xml"/>
+        <property name="ConfigLocation" value="classpath:sqlMapConfig.xml"/>
         <!-- 批量生成pojo类的别名 -->
         <property name="typeAliasesPackage" value="com.numb.wfjz.pojo"/>
         <!-- 指定mapper文件的位置，当与接口位置相同时可以不用指定 -->

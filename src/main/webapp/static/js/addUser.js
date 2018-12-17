@@ -151,7 +151,7 @@ function checkSubmit(flag){
         if(checkSubmit(flag)){
             let userDetail = getData();
             console.log(userDetail);
-            window.ajaxUtil.ajaxRequest('post','/admin/addUser',(xhr)=>{
+            window.ajaxUtil.ajaxRequest('post','/user/addUser',(xhr)=>{
                 let jsonData = JSON.parse(xhr.responseText);
                 if(jsonData.code == 200){
                     alert('用户添加成功');

@@ -35,9 +35,15 @@
     <!-- spring mvc end-->
 
     <!-- shiro filter start -->
+    <!-- shiro过滤器，DelegatingFilterProxy通过代理模式将spring中的bean和filter关联起来 -->
     <filter>
         <filter-name>shiroFilter</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+        <!-- 该值缺省为false,表示生命周期由SpringApplicationContext管理,设置为true则表示由ServletContainer管理 -->
+        <init-param>
+            <param-name>targetFilterLifecycle</param-name>
+            <param-value>true</param-value>
+        </init-param>
     </filter>
     <filter-mapping>
         <filter-name>shiroFilter</filter-name>

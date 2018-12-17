@@ -7,21 +7,19 @@ import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
- * 数据库中user表的pojo类
- * @author Numb
+ * 角色pojo
+ * @author Numblgw
+ * @date 2018/12/5 20:35
  */
 @Data
-public class User implements Serializable {
-
-    private static final long serialVersionUID = 2675625947798064817L;
-    //id
+public class Role implements Serializable {
+    private static final long serialVersionUID = -677083667284736274L;
+    //自增id
     private Integer id;
-    //用户名
-    private String username;
-    //密码
-    private String password;
-    //是否删除
-    private Boolean deleted;
+    //角色名称
+    private String roleName;
+    //角色描述
+    private String description;
     //创建该条记录的时间
     private LocalDateTime gmtCreate;
     //最后一次修改该记录的时间

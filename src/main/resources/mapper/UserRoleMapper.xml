@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.numb.wfjz.mapper.UserRoleMapper">
+    <insert id="insert" parameterType="userRole">
+        insert into wfjz_user_role
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != 0 and userId != null">
+                user_id,
+            </if>
+            <if test="roleIdList != null">
+                role_id,
+            </if>
+            <if test="gmtCreate != null">
+                gmt_create,
+            </if>
+        </trim>
+        <foreach collection="roleIdList" item="roleId" separator="," open="values" close=" ">
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != 0 and userId != null">
+                #{userId},
+            </if>
+            <if test="roleIdList != null">
+                #{roleId},
+            </if>
+            <if test="gmtCreate != null">
+                #{gmtCreate},
+            </if>
+            </trim>
+        </foreach>
+    </insert>
+    
+    <resultMap id="userRoleResultMap" type="userRole">
+        <id column="id" jdbcType="int" property="id" />
+        <result column="user_id" jdbcType="int" property="userId" />
+        <result column="gmt_create" jdbcType="datetime" property="gmtCreate" />
+        <collection property="roleIdList" ofType="java.lang.Integer" >
+            <id column="role_id" jdbcType="int" />
+        </collection>
+    </resultMap>
+
+    <select id="selectRoleByUserId" parameterType="int" resultMap="userRoleResultMap">
+        select id, user_id, role_id, gmt_create, gmt_modified
+        from wfjz_user_role
+        where user_id = #{id}
+    </select>
+</mapper>

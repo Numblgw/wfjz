@@ -5,7 +5,7 @@ layui.use(['table','element','layer','laypage'], function(){
 
     table.render({
         elem: '#userList'
-        ,url: '/admin/userList' //数据接口
+        ,url: '/user/userList' //数据接口
         ,method:'get'
         ,toolbar:'default'
         ,page:true
@@ -60,7 +60,7 @@ layui.use(['table','element','layer','laypage'], function(){
                         checkStatus.data.forEach((obj)=>{
                             ids.push(obj.id);
                         });
-                        window.ajaxUtil.ajaxRequest('delete','/admin/deleteUser',(xhr)=>{
+                        window.ajaxUtil.ajaxRequest('delete','/user/deleteUser',(xhr)=>{
                             let jsonData = JSON.parse(xhr.responseText);
                             if(jsonData.code == 200){
                                 alert('删除成功');

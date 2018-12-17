@@ -75,7 +75,7 @@ function checkData(userData) {
 
     //如果通过用户列表跳转到的修改页面，则通过选择的id查询用户信息
     if(updateId != 0){
-        let url = `/admin/userInfo?id=${updateId}`;
+        let url = `/user/userInfo?id=${updateId}`;
         window.ajaxUtil.ajaxRequest('get',url,(xhr)=>{
             let jsonData = JSON.parse(xhr.responseText);
             if(jsonData.code == 200){
@@ -94,7 +94,7 @@ function checkData(userData) {
     document.querySelectorAll('.updateUser-button-submit')[0].addEventListener('click',()=>{
         let userData = getData();
         if(checkData(userData)){
-            window.ajaxUtil.ajaxRequest('put','/admin/updateUser',(xhr)=>{
+            window.ajaxUtil.ajaxRequest('put','/user/updateUser',(xhr)=>{
                 let jsonData = JSON.parse(xhr.responseText);
                 if(jsonData.code == 200){
                     alert('修改数据成功！');
@@ -112,7 +112,7 @@ function checkData(userData) {
         let value = idInput.value;
         if(value != updateId){
             updateId = value;
-            let url = `/admin/userInfo?id=${value}`;
+            let url = `/user/userInfo?id=${value}`;
             window.ajaxUtil.ajaxRequest('get',url,(xhr)=>{
                 let jsonData = JSON.parse(xhr.responseText);
                 if(jsonData.code == 200){
@@ -128,7 +128,7 @@ function checkData(userData) {
         let id = document.querySelectorAll('.updateUser-after-id input')[0].value;
         if(id == '' && username != updateUsername){
             updateUsername = username;
-            let url = `/admin/userInfo?id=0&username=${username}`;
+            let url = `/user/userInfo?id=0&username=${username}`;
             window.ajaxUtil.ajaxRequest('get',url,(xhr)=>{
                 let jsonData = JSON.parse(xhr.responseText);
                 if(jsonData.code == 200){

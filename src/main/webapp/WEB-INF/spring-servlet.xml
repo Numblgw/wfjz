@@ -51,7 +51,7 @@
     <bean class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer">
         <property name="properties">
             <bean class="org.springframework.beans.factory.config.PropertiesFactoryBean">
-                <property name="location" value="classpath:properties/mysql.properties" />
+                <property name="location" value="classpath:global.properties" />
             </bean>
         </property>
     </bean>

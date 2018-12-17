@@ -4,9 +4,151 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.numb.wfjz.mapper.UserMapper">
+    <insert id="insertUser" parameterType="userDetail" useGeneratedKeys="true" keyProperty="id">
+        insert into wfjz_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="username != null and username != ''">
+                username,
+            </if>
+            <if test="password != null and password != ''">
+                password,
+            </if>
+            <if test="gmtCreate != null">
+                gmt_create,
+            </if>
+        </trim>
+        <trim prefix="values(" suffix=")" suffixOverrides=",">
+            <if test="username != null and username != ''">
+                #{username},
+            </if>
+            <if test="password != null and password != ''">
+                #{password},
+            </if>
+            <if test="gmtCreate != null">
+                #{gmtCreate},
+            </if>
+        </trim>
+    </insert>
+
+    <insert id="insertUserDetail" parameterType="userDetail">
+        insert into wfjz_user_detail
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and id != 0">
+                user_id,
+            </if>
+            <if test="nickname != null and nickname != ''">
+                nickname,
+            </if>
+            <if test="sex != null and sex != ''">
+                sex,
+            </if>
+            <if test="email != null and email != ''">
+                email,
+            </if>
+            <if test="phone != null and phone != ''">
+                phone,
+            </if>
+            <if test="address != null and address != ''">
+                address,
+            </if>
+            <if test="gmtCreate != null">
+                gmt_create,
+            </if>
+        </trim>
+        <trim prefix="values(" suffix=")" suffixOverrides=",">
+            <if test="id != null and id != 0">
+                #{id},
+            </if>
+            <if test="nickname != null and nickname != ''">
+                #{nickname},
+            </if>
+            <if test="sex != null and sex != ''">
+                #{sex},
+            </if>
+            <if test="email != null and email != ''">
+                #{email},
+            </if>
+            <if test="phone != null and phone != ''">
+                #{phone},
+            </if>
+            <if test="address != null and address != ''">
+                #{address},
+            </if>
+            <if test="gmtCreate != null">
+                #{gmtCreate},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateUserDetail" parameterType="userDetail">
+        update wfjz_user_detail
+        <trim prefix="set " suffix=" " suffixOverrides=",">
+            <if test="nickname != null and nickname != ''">
+                nickname = #{nickname},
+            </if>
+            <if test="sex != null and sex != ''">
+                sex = #{sex},
+            </if>
+            <if test="email != null and email != ''">
+                email = #{email},
+            </if>
+            <if test="phone != null and phone != ''">
+                phone = #{phone},
+            </if>
+            <if test="address != null and address != ''">
+                address = #{address},
+            </if>
+            <if test="gmtModified != null">
+                gmt_modified = #{gmtModified}
+            </if>
+        </trim>
+        where user_id = #{id}
+    </update>
+
+    <update id="deleteUserByIdList" parameterType="java.util.List">
+        update wfjz_user
+        set is_deleted = true
+        where id in
+        <foreach collection="list" item="item" separator="," open="(" close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <update id="deleteUserDetailByIdList" parameterType="java.util.List">
+        update wfjz_user_detail
+        set is_deleted = true
+        where user_id in
+        <foreach collection="list" item="item" separator="," open="(" close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <select id="selectIdByUsername" parameterType="string" resultType="int">
+        select id from wfjz_user where username = #{username}
+    </select>
+
+    <select id="selectUserDetailById" parameterType="int" resultType="userDetail">
+        select u.id id , u.username username , u.password password , u.gmt_create gmt_create , u.gmt_modified gmt_modified ,
+        u_d.nickname nickname , u_d.sex sex , u_d.email email , u_d.phone phone , u_d.address address
+        from wfjz_user u left outer join wfjz_user_detail u_d on u.id = u_d.user_id
+        where u.id = #{id} and u.is_deleted = false
+    </select>
+
+    <select id="findByUsername" parameterType="String" resultType="user">
+        select id, username, password, email, gmt_create
+        from wfjz_user
+        where username = #{username} and is_deleted = false;
+    </select>
+
     <select id="countByUsername" parameterType="String" resultType="int">
         select count(*)
         from wfjz_user
         where username = #{username}
+    </select>
+
+    <select id="selectUserDetailList" resultType="userDetail">
+        select u.id id , u.username username , u_d.nickname nickname , u_d.sex sex , u_d.email email , u_d.phone phone , u_d.address address
+        from wfjz_user u left outer join wfjz_user_detail u_d on u.id = u_d.user_id
+        where u.is_deleted = false
     </select>
 </mapper>

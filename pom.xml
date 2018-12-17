@@ -19,7 +19,6 @@
         <maven.compiler.target>1.7</maven.compiler.target>
         <spring.version>4.3.3.RELEASE</spring.version>
         <json.version>2.9.5</json.version>
-        <log4j2.version>2.5</log4j2.version>
     </properties>
 
     <dependencies>
@@ -27,7 +26,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.11</version>
+            <version>4.12</version>
             <scope>test</scope>
         </dependency>
 
@@ -202,12 +201,20 @@
             <version>5.1.2</version>
         </dependency>
 
-        <!-- 日志 -->
+        <!-- 日志模块 logback -->
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>1.2.3</version>
         </dependency>
+
+        <!-- ehcache start -->
+        <dependency>
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache-core</artifactId>
+            <version>2.6.11</version>
+        </dependency>
+        <!-- ehcache end -->
 
         <!--
          插件（神器）
