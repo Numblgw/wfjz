@@ -47,12 +47,23 @@
     <!-- 自动识别并处理静态资源 -->
     <mvc:default-servlet-handler/>
 
-    <!-- @value 注解-->
+    <!-- @value 注解 用于在代码中通过注解读取properties的值 -->
     <bean class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer">
         <property name="properties">
             <bean class="org.springframework.beans.factory.config.PropertiesFactoryBean">
                 <property name="location" value="classpath:global.properties" />
             </bean>
         </property>
+    </bean>
+
+    <!-- 下面shiro相关配置要写在mvc配置中，写在spring-shiro配置中不生效 -->
+    <!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+
+    <!-- 开启Shiro注解,必须配置在lifecycleBeanPostProcessor之后才可以 -->
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
+          depends-on="lifecycleBeanPostProcessor"/>
+    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+        <property name="securityManager" ref="securityManager"/>
     </bean>
 </beans>

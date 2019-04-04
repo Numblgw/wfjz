@@ -8,7 +8,7 @@ package com.numb.wfjz.common.enums;
  */
 public interface EnumKeyGetter<T extends Enum<T>, K> {
     /**
-     * 获取枚举实例中的描述值，
+     * 获取枚举实例中的描述值，用来初始化反向查找帮助类中的反向映射。
      * @param enumValue 枚举实例
      * @return  描述值
      */

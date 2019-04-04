@@ -43,22 +43,11 @@
                  <!--anon = 任何人访问 -->
                 /favicon.ico = anon
                 /static/** = anon
-                /*/register = anon
+                <!--/*/register = anon-->
                 /*/login = anon
                  <!--authc = 需要认证（登陆） -->
                 /** = authc
             </value>
         </property>
     </bean>
-
-    <!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->
-    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
-
-    <!-- 开启Shiro注解,必须配置在lifecycleBeanPostProcessor之后才可以 -->
-    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
-          depends-on="lifecycleBeanPostProcessor"/>
-    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
-        <property name="securityManager" ref="securityManager"/>
-    </bean>
-
 </beans>

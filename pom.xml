@@ -208,14 +208,6 @@
             <version>1.2.3</version>
         </dependency>
 
-        <!-- ehcache start -->
-        <dependency>
-            <groupId>net.sf.ehcache</groupId>
-            <artifactId>ehcache-core</artifactId>
-            <version>2.6.11</version>
-        </dependency>
-        <!-- ehcache end -->
-
         <!--
          插件（神器）
          通过对pojo类加相关注解实现在编译时生成相关代码。例如：

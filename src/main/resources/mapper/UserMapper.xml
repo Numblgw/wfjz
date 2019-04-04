@@ -128,8 +128,8 @@
     </select>
 
     <select id="selectUserDetailById" parameterType="int" resultType="userDetail">
-        select u.id id , u.username username , u.password password , u.gmt_create gmt_create , u.gmt_modified gmt_modified ,
-        u_d.nickname nickname , u_d.sex sex , u_d.email email , u_d.phone phone , u_d.address address
+        select u.id id , u.username username , u.password password , u.email , u.gmt_create gmt_create , u.gmt_modified gmt_modified ,
+        u_d.nickname nickname , u_d.sex sex , u_d.phone phone , u_d.address address
         from wfjz_user u left outer join wfjz_user_detail u_d on u.id = u_d.user_id
         where u.id = #{id} and u.is_deleted = false
     </select>
@@ -147,7 +147,7 @@
     </select>
 
     <select id="selectUserDetailList" resultType="userDetail">
-        select u.id id , u.username username , u_d.nickname nickname , u_d.sex sex , u_d.email email , u_d.phone phone , u_d.address address
+        select u.id id , u.username username , u.email email , u_d.nickname nickname , u_d.sex sex , u_d.phone phone , u_d.address address
         from wfjz_user u left outer join wfjz_user_detail u_d on u.id = u_d.user_id
         where u.is_deleted = false
     </select>

@@ -67,10 +67,10 @@
             let user = new Object();
             user.username = document.getElementById('username').value;
             user.password = document.getElementById('password').value;
-            window.ajaxUtil.ajaxRequest('get', '/user/login', (xhr)=>{
+            window.ajaxUtil.ajaxRequest('Post', '/user/login', (xhr)=>{
                 let jsonData = JSON.parse(xhr.responseText);
                 if(jsonData.code == '200'){
-                    window.location.href = '/admin/adminView';
+                    window.location.href = '/view/admin';
                 } else{
                     alert(jsonData.msg);
                 }

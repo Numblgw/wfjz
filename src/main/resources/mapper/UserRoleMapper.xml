@@ -33,16 +33,14 @@
     </insert>
     
     <resultMap id="userRoleResultMap" type="userRole">
-        <id column="id" jdbcType="int" property="id" />
-        <result column="user_id" jdbcType="int" property="userId" />
-        <result column="gmt_create" jdbcType="datetime" property="gmtCreate" />
+        <result column="user_id" jdbcType="INTEGER" property="userId" />
         <collection property="roleIdList" ofType="java.lang.Integer" >
-            <id column="role_id" jdbcType="int" />
+            <id column="role_id" jdbcType="INTEGER" property="java.lang.Integer" />
         </collection>
     </resultMap>
 
     <select id="selectRoleByUserId" parameterType="int" resultMap="userRoleResultMap">
-        select id, user_id, role_id, gmt_create, gmt_modified
+        select user_id, role_id
         from wfjz_user_role
         where user_id = #{id}
     </select>

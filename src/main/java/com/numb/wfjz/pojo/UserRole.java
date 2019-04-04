@@ -4,7 +4,6 @@ import lombok.Data;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -26,9 +25,19 @@ public class UserRole implements Serializable {
     //最后一次修改记录的时间
     private LocalDateTime gmtModified;
 
+    public UserRole(){}
+
     public UserRole(int userId, List<Integer> roleIdList, LocalDateTime gmtCreate){
         this.userId = userId;
         this.roleIdList = roleIdList;
         this.gmtCreate = gmtCreate;
+    }
+
+    public UserRole(int id, int userId, List<Integer> roleIdList, LocalDateTime gmtCreate, LocalDateTime gmtModified){
+        this.id = id;
+        this.userId = userId;
+        this.roleIdList = roleIdList;
+        this.gmtCreate = gmtCreate;
+        this.gmtModified = gmtModified;
     }
 }
